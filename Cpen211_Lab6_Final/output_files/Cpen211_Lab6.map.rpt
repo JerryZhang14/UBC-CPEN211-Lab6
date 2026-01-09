@@ -1,0 +1,594 @@
+Analysis & Synthesis report for Cpen211_Lab6
+Thu Oct 23 11:45:28 2025
+Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |DE10_LITE_Golden_Top|keyboard_core:u_kbd|st
+  9. General Register Statistics
+ 10. Inverted Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Parameter Settings for User Entity Instance: keyboard_core:u_kbd
+ 13. Parameter Settings for User Entity Instance: keyboard_core:u_kbd|kb_db:u_db
+ 14. Port Connectivity Checks: "keyboard_core:u_kbd|kb_db:u_db"
+ 15. Port Connectivity Checks: "keyboard_core:u_kbd"
+ 16. Post-Synthesis Netlist Statistics for Top Partition
+ 17. Elapsed Time Per Partition
+ 18. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Thu Oct 23 11:45:28 2025           ;
+; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
+; Revision Name                      ; Cpen211_Lab6                                    ;
+; Top-level Entity Name              ; DE10_LITE_Golden_Top                            ;
+; Family                             ; MAX 10                                          ;
+; Total logic elements               ; 331                                             ;
+;     Total combinational functions  ; 296                                             ;
+;     Dedicated logic registers      ; 154                                             ;
+; Total registers                    ; 154                                             ;
+; Total pins                         ; 185                                             ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
+; UFM blocks                         ; 0                                               ;
+; ADC blocks                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                ;
++------------------------------------------------------------------+----------------------+--------------------+
+; Option                                                           ; Setting              ; Default Value      ;
++------------------------------------------------------------------+----------------------+--------------------+
+; Device                                                           ; 10M50DAF484C6GES     ;                    ;
+; Top-level entity name                                            ; DE10_LITE_Golden_Top ; Cpen211_Lab6       ;
+; Family name                                                      ; MAX 10               ; Cyclone V          ;
+; Use smart compilation                                            ; Off                  ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                   ; On                 ;
+; Enable compact report table                                      ; Off                  ; Off                ;
+; Restructure Multiplexers                                         ; Auto                 ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                  ; Off                ;
+; Preserve fewer node names                                        ; On                   ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable               ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001         ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993            ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto                 ; Auto               ;
+; Safe State Machine                                               ; Off                  ; Off                ;
+; Extract Verilog State Machines                                   ; On                   ; On                 ;
+; Extract VHDL State Machines                                      ; On                   ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                  ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000                 ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                  ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                   ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                   ; On                 ;
+; Parallel Synthesis                                               ; On                   ; On                 ;
+; DSP Block Balancing                                              ; Auto                 ; Auto               ;
+; NOT Gate Push-Back                                               ; On                   ; On                 ;
+; Power-Up Don't Care                                              ; On                   ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                  ; Off                ;
+; Remove Duplicate Registers                                       ; On                   ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                  ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                  ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                  ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                  ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                  ; Off                ;
+; Ignore SOFT Buffers                                              ; On                   ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                  ; Off                ;
+; Optimization Technique                                           ; Balanced             ; Balanced           ;
+; Carry Chain Length                                               ; 70                   ; 70                 ;
+; Auto Carry Chains                                                ; On                   ; On                 ;
+; Auto Open-Drain Pins                                             ; On                   ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                  ; Off                ;
+; Auto ROM Replacement                                             ; On                   ; On                 ;
+; Auto RAM Replacement                                             ; On                   ; On                 ;
+; Auto DSP Block Replacement                                       ; On                   ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto                 ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto                 ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                   ; On                 ;
+; Strict RAM Replacement                                           ; Off                  ; Off                ;
+; Allow Synchronous Control Signals                                ; On                   ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                  ; Off                ;
+; Auto RAM Block Balancing                                         ; On                   ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                  ; Off                ;
+; Auto Resource Sharing                                            ; Off                  ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                  ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                  ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                  ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                   ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                  ; Off                ;
+; Timing-Driven Synthesis                                          ; On                   ; On                 ;
+; Report Parameter Settings                                        ; On                   ; On                 ;
+; Report Source Assignments                                        ; On                   ; On                 ;
+; Report Connectivity Checks                                       ; On                   ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                  ; Off                ;
+; Synchronization Register Chain Length                            ; 2                    ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation   ; Normal compilation ;
+; HDL message level                                                ; Level2               ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                  ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000                 ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000                 ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                  ; 100                ;
+; Clock MUX Protection                                             ; On                   ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                  ; Off                ;
+; Block Design Naming                                              ; Auto                 ; Auto               ;
+; SDC constraint protection                                        ; Off                  ; Off                ;
+; Synthesis Effort                                                 ; Auto                 ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                   ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                  ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium               ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto                 ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                   ; On                 ;
++------------------------------------------------------------------+----------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 8           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 8           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-8         ;   0.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                            ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                        ; Library ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------+---------+
+; DE10_LITE_Golden_Top.v           ; yes             ; User Verilog HDL File        ; C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v        ;         ;
+; output_files/keyboard_core.sv    ; yes             ; User SystemVerilog HDL File  ; C:/Cpen211_Lab6_Final/output_files/keyboard_core.sv ;         ;
+; output_files/combo_core.sv       ; yes             ; User SystemVerilog HDL File  ; C:/Cpen211_Lab6_Final/output_files/combo_core.sv    ;         ;
+; output_files/kb_db.sv            ; yes             ; User SystemVerilog HDL File  ; C:/Cpen211_Lab6_Final/output_files/kb_db.sv         ;         ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------+---------+
+
+
++-------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                       ;
++---------------------------------------------+---------------------+
+; Resource                                    ; Usage               ;
++---------------------------------------------+---------------------+
+; Estimated Total logic elements              ; 331                 ;
+;                                             ;                     ;
+; Total combinational functions               ; 296                 ;
+; Logic element usage by number of LUT inputs ;                     ;
+;     -- 4 input functions                    ; 136                 ;
+;     -- 3 input functions                    ; 62                  ;
+;     -- <=2 input functions                  ; 98                  ;
+;                                             ;                     ;
+; Logic elements by mode                      ;                     ;
+;     -- normal mode                          ; 245                 ;
+;     -- arithmetic mode                      ; 51                  ;
+;                                             ;                     ;
+; Total registers                             ; 154                 ;
+;     -- Dedicated logic registers            ; 154                 ;
+;     -- I/O registers                        ; 0                   ;
+;                                             ;                     ;
+; I/O pins                                    ; 185                 ;
+;                                             ;                     ;
+; Embedded Multiplier 9-bit elements          ; 0                   ;
+;                                             ;                     ;
+; Maximum fan-out node                        ; MAX10_CLK1_50~input ;
+; Maximum fan-out                             ; 154                 ;
+; Total fan-out                               ; 1732                ;
+; Average fan-out                             ; 1.94                ;
++---------------------------------------------+---------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                          ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------+----------------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                  ; Entity Name          ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------+----------------------+--------------+
+; |DE10_LITE_Golden_Top      ; 296 (0)             ; 154 (0)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 185  ; 0            ; 0          ; |DE10_LITE_Golden_Top                                ; DE10_LITE_Golden_Top ; work         ;
+;    |combo_core:u_cmb|      ; 192 (192)           ; 79 (79)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|combo_core:u_cmb               ; combo_core           ; work         ;
+;    |keyboard_core:u_kbd|   ; 104 (60)            ; 75 (26)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|keyboard_core:u_kbd            ; keyboard_core        ; work         ;
+;       |kb_db:u_db|         ; 44 (44)             ; 49 (49)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|keyboard_core:u_kbd|kb_db:u_db ; kb_db                ; work         ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------+----------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|keyboard_core:u_kbd|st ;
++------+------+------+-----------------------------------------+
+; Name ; st.A ; st.C ; st.B                                    ;
++------+------+------+-----------------------------------------+
+; st.A ; 0    ; 0    ; 0                                       ;
+; st.B ; 1    ; 0    ; 1                                       ;
+; st.C ; 1    ; 1    ; 0                                       ;
++------+------+------+-----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 154   ;
+; Number of registers using Synchronous Clear  ; 24    ;
+; Number of registers using Synchronous Load   ; 1     ;
+; Number of registers using Asynchronous Clear ; 105   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 93    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; combo_core:u_cmb|digit6[0]              ; 9       ;
+; combo_core:u_cmb|digit6[1]              ; 9       ;
+; combo_core:u_cmb|digit6[2]              ; 9       ;
+; combo_core:u_cmb|digit6[3]              ; 9       ;
+; combo_core:u_cmb|digit5[0]              ; 9       ;
+; combo_core:u_cmb|digit5[1]              ; 9       ;
+; combo_core:u_cmb|digit5[2]              ; 9       ;
+; combo_core:u_cmb|digit5[3]              ; 9       ;
+; combo_core:u_cmb|digit4[0]              ; 9       ;
+; combo_core:u_cmb|digit4[1]              ; 9       ;
+; combo_core:u_cmb|digit4[2]              ; 9       ;
+; combo_core:u_cmb|digit4[3]              ; 9       ;
+; combo_core:u_cmb|digit3[0]              ; 9       ;
+; combo_core:u_cmb|digit3[1]              ; 9       ;
+; combo_core:u_cmb|digit3[2]              ; 9       ;
+; combo_core:u_cmb|digit3[3]              ; 9       ;
+; combo_core:u_cmb|digit2[0]              ; 9       ;
+; combo_core:u_cmb|digit2[1]              ; 9       ;
+; combo_core:u_cmb|digit2[2]              ; 9       ;
+; combo_core:u_cmb|digit2[3]              ; 9       ;
+; combo_core:u_cmb|digit1[0]              ; 9       ;
+; combo_core:u_cmb|digit1[1]              ; 9       ;
+; combo_core:u_cmb|digit1[2]              ; 9       ;
+; combo_core:u_cmb|digit1[3]              ; 9       ;
+; combo_core:u_cmb|stored_pass1[0]        ; 1       ;
+; combo_core:u_cmb|stored_pass2[1]        ; 1       ;
+; combo_core:u_cmb|stored_pass3[1]        ; 1       ;
+; combo_core:u_cmb|stored_pass3[0]        ; 1       ;
+; combo_core:u_cmb|stored_pass4[2]        ; 1       ;
+; combo_core:u_cmb|stored_pass5[0]        ; 1       ;
+; combo_core:u_cmb|stored_pass5[2]        ; 1       ;
+; combo_core:u_cmb|stored_pass6[1]        ; 1       ;
+; combo_core:u_cmb|stored_pass6[2]        ; 1       ;
+; keyboard_core:u_kbd|key_validn          ; 4       ;
+; combo_core:u_cmb|key_validn_prev        ; 2       ;
+; Total number of inverted registers = 35 ;         ;
++-----------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |DE10_LITE_Golden_Top|combo_core:u_cmb|debounce_counter[18]     ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |DE10_LITE_Golden_Top|keyboard_core:u_kbd|kb_db:u_db|counter[8] ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE10_LITE_Golden_Top|combo_core:u_cmb|digit1[0]                ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE10_LITE_Golden_Top|combo_core:u_cmb|digit5[0]                ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE10_LITE_Golden_Top|combo_core:u_cmb|digit3[2]                ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE10_LITE_Golden_Top|combo_core:u_cmb|digit2[1]                ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE10_LITE_Golden_Top|combo_core:u_cmb|digit6[1]                ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE10_LITE_Golden_Top|combo_core:u_cmb|digit4[3]                ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |DE10_LITE_Golden_Top|keyboard_core:u_kbd|Selector3             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: keyboard_core:u_kbd ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; SLOWCLK_BITS   ; 16    ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: keyboard_core:u_kbd|kb_db:u_db ;
++----------------+-------+----------------------------------------------------+
+; Parameter Name ; Value ; Type                                               ;
++----------------+-------+----------------------------------------------------+
+; DELAY          ; 14    ; Signed Integer                                     ;
++----------------+-------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "keyboard_core:u_kbd|kb_db:u_db"                                                           ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                             ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; debounceOK ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "keyboard_core:u_kbd"                                                                    ;
++-----------+-------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                                                             ;
++-----------+-------+----------+-------------------------------------------------------------------------------------+
+; col_wires ; Bidir ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+-------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 185                         ;
+; cycloneiii_ff         ; 154                         ;
+;     CLR               ; 26                          ;
+;     ENA               ; 14                          ;
+;     ENA CLR           ; 54                          ;
+;     ENA CLR SCLR      ; 24                          ;
+;     ENA CLR SLD       ; 1                           ;
+;     plain             ; 35                          ;
+; cycloneiii_io_obuf    ; 71                          ;
+; cycloneiii_lcell_comb ; 302                         ;
+;     arith             ; 51                          ;
+;         2 data inputs ; 50                          ;
+;         3 data inputs ; 1                           ;
+;     normal            ; 251                         ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 41                          ;
+;         2 data inputs ; 11                          ;
+;         3 data inputs ; 61                          ;
+;         4 data inputs ; 136                         ;
+;                       ;                             ;
+; Max LUT depth         ; 4.00                        ;
+; Average LUT depth     ; 2.17                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Processing started: Thu Oct 23 11:45:18 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Cpen211_Lab6 -c Cpen211_Lab6
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file de10_lite_golden_top.v
+    Info (12023): Found entity 1: DE10_LITE_Golden_Top File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file output_files/keyboard_core.sv
+    Info (12023): Found entity 1: keyboard_core File: C:/Cpen211_Lab6_Final/output_files/keyboard_core.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file output_files/combo_core.sv
+    Info (12023): Found entity 1: combo_core File: C:/Cpen211_Lab6_Final/output_files/combo_core.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file output_files/kb_db.sv
+    Info (12023): Found entity 1: kb_db File: C:/Cpen211_Lab6_Final/output_files/kb_db.sv Line: 1
+Info (12127): Elaborating entity "DE10_LITE_Golden_Top" for the top level hierarchy
+Warning (10034): Output port "DRAM_ADDR" at DE10_LITE_Golden_Top.v(45) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+Warning (10034): Output port "DRAM_BA" at DE10_LITE_Golden_Top.v(46) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 46
+Warning (10034): Output port "VGA_B" at DE10_LITE_Golden_Top.v(95) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 95
+Warning (10034): Output port "VGA_G" at DE10_LITE_Golden_Top.v(96) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 96
+Warning (10034): Output port "VGA_R" at DE10_LITE_Golden_Top.v(98) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 98
+Warning (10034): Output port "DRAM_CAS_N" at DE10_LITE_Golden_Top.v(47) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 47
+Warning (10034): Output port "DRAM_CKE" at DE10_LITE_Golden_Top.v(48) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 48
+Warning (10034): Output port "DRAM_CLK" at DE10_LITE_Golden_Top.v(49) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 49
+Warning (10034): Output port "DRAM_CS_N" at DE10_LITE_Golden_Top.v(50) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 50
+Warning (10034): Output port "DRAM_LDQM" at DE10_LITE_Golden_Top.v(52) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 52
+Warning (10034): Output port "DRAM_RAS_N" at DE10_LITE_Golden_Top.v(53) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 53
+Warning (10034): Output port "DRAM_UDQM" at DE10_LITE_Golden_Top.v(54) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 54
+Warning (10034): Output port "DRAM_WE_N" at DE10_LITE_Golden_Top.v(55) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 55
+Warning (10034): Output port "VGA_HS" at DE10_LITE_Golden_Top.v(97) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 97
+Warning (10034): Output port "VGA_VS" at DE10_LITE_Golden_Top.v(99) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 99
+Warning (10034): Output port "GSENSOR_CS_N" at DE10_LITE_Golden_Top.v(104) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 104
+Warning (10034): Output port "GSENSOR_SCLK" at DE10_LITE_Golden_Top.v(106) has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 106
+Info (12128): Elaborating entity "keyboard_core" for hierarchy "keyboard_core:u_kbd" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 147
+Info (12128): Elaborating entity "kb_db" for hierarchy "keyboard_core:u_kbd|kb_db:u_db" File: C:/Cpen211_Lab6_Final/output_files/keyboard_core.sv Line: 49
+Info (12128): Elaborating entity "combo_core" for hierarchy "combo_core:u_cmb" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 149
+Warning (10230): Verilog HDL assignment warning at combo_core.sv(37): truncated value with size 32 to match size of target (24) File: C:/Cpen211_Lab6_Final/output_files/combo_core.sv Line: 37
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13034): The following nodes have both tri-state and non-tri-state drivers
+    Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[4]" and its non-tri-state driver. File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[5]" and its non-tri-state driver. File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[6]" and its non-tri-state driver. File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[7]" and its non-tri-state driver. File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+Warning (13039): The following bidirectional pins have no drivers
+    Warning (13040): bidirectional pin "ARDUINO_IO[0]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "ARDUINO_IO[1]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "ARDUINO_IO[2]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "ARDUINO_IO[3]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "DRAM_DQ[0]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[1]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[2]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[3]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[4]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[5]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[6]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[7]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[8]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[9]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[10]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[11]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[12]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[13]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[14]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "DRAM_DQ[15]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13040): bidirectional pin "GSENSOR_SDI" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 107
+    Warning (13040): bidirectional pin "GSENSOR_SDO" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 108
+    Warning (13040): bidirectional pin "ARDUINO_IO[8]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "ARDUINO_IO[9]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "ARDUINO_IO[10]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "ARDUINO_IO[11]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "ARDUINO_IO[12]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "ARDUINO_IO[13]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "ARDUINO_IO[14]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "ARDUINO_IO[15]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13040): bidirectional pin "ARDUINO_RESET_N" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "GPIO[0]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[1]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[2]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[3]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[4]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[5]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[6]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[7]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[8]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[9]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[10]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[11]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[12]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[13]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[14]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[15]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[16]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[17]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[18]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[19]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[20]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[21]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[22]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[23]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[24]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[25]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[26]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[27]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[28]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[29]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[30]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[31]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[32]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[33]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[34]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+    Warning (13040): bidirectional pin "GPIO[35]" has no driver File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 121
+Info (13000): Registers with preset signals will power-up high File: C:/Cpen211_Lab6_Final/output_files/combo_core.sv Line: 76
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "ARDUINO_IO[4]~synth" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13010): Node "ARDUINO_IO[5]~synth" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13010): Node "ARDUINO_IO[6]~synth" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+    Warning (13010): Node "ARDUINO_IO[7]~synth" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 113
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "DRAM_ADDR[0]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[1]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[2]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[3]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[4]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[5]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[6]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[7]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[8]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[9]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[10]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[11]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_ADDR[12]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 45
+    Warning (13410): Pin "DRAM_BA[0]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_BA[1]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_CAS_N" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 47
+    Warning (13410): Pin "DRAM_CKE" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 48
+    Warning (13410): Pin "DRAM_CLK" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 49
+    Warning (13410): Pin "DRAM_CS_N" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 50
+    Warning (13410): Pin "DRAM_LDQM" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13410): Pin "DRAM_RAS_N" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 53
+    Warning (13410): Pin "DRAM_UDQM" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 54
+    Warning (13410): Pin "DRAM_WE_N" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 55
+    Warning (13410): Pin "HEX0[7]" is stuck at VCC File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 60
+    Warning (13410): Pin "HEX1[7]" is stuck at VCC File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 63
+    Warning (13410): Pin "HEX2[7]" is stuck at VCC File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 66
+    Warning (13410): Pin "HEX3[7]" is stuck at VCC File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 69
+    Warning (13410): Pin "HEX4[7]" is stuck at VCC File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 72
+    Warning (13410): Pin "HEX5[7]" is stuck at VCC File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 75
+    Warning (13410): Pin "VGA_B[0]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 95
+    Warning (13410): Pin "VGA_B[1]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 95
+    Warning (13410): Pin "VGA_B[2]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 95
+    Warning (13410): Pin "VGA_B[3]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 95
+    Warning (13410): Pin "VGA_G[0]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 96
+    Warning (13410): Pin "VGA_G[1]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 96
+    Warning (13410): Pin "VGA_G[2]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 96
+    Warning (13410): Pin "VGA_G[3]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 96
+    Warning (13410): Pin "VGA_HS" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 97
+    Warning (13410): Pin "VGA_R[0]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 98
+    Warning (13410): Pin "VGA_R[1]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 98
+    Warning (13410): Pin "VGA_R[2]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 98
+    Warning (13410): Pin "VGA_R[3]" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 98
+    Warning (13410): Pin "VGA_VS" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 99
+    Warning (13410): Pin "GSENSOR_CS_N" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 104
+    Warning (13410): Pin "GSENSOR_SCLK" is stuck at GND File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 106
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 15 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "ADC_CLK_10" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 32
+    Warning (15610): No output dependent on input pin "MAX10_CLK2_50" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 40
+    Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 80
+    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 90
+    Warning (15610): No output dependent on input pin "SW[1]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 90
+    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 90
+    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 90
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 90
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 90
+    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 90
+    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 90
+    Warning (15610): No output dependent on input pin "SW[8]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 90
+    Warning (15610): No output dependent on input pin "SW[9]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 90
+    Warning (15610): No output dependent on input pin "GSENSOR_INT[1]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 105
+    Warning (15610): No output dependent on input pin "GSENSOR_INT[2]" File: C:/Cpen211_Lab6_Final/DE10_LITE_Golden_Top.v Line: 105
+Info (21057): Implemented 523 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 17 input pins
+    Info (21059): Implemented 97 output pins
+    Info (21060): Implemented 71 bidirectional pins
+    Info (21061): Implemented 338 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 160 warnings
+    Info: Peak virtual memory: 4842 megabytes
+    Info: Processing ended: Thu Oct 23 11:45:28 2025
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:28
+
+

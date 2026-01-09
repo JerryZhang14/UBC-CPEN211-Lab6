@@ -1,0 +1,60 @@
+module kb_db #( DELAY=16 )(
+ input  logic clk, rst,
+ inout  wire  [3:0] row_wires, col_wires,
+ input  logic [3:0] row_scan,
+ output logic [3:0] row, col,
+ output logic valid, debounceOK
+);
+ logic [3:0] col_F1, col_F2, row_F1, row_F2;
+ logic [3:0] row_sync, col_sync;
+ logic pressed, pressed_sync, row_change, col_change;
+
+ assign row_wires  = row_scan;
+ assign pressed    = ~&(col_F2);
+ assign col_change = pressed ^ pressed_sync;
+ assign row_change = |(row_scan ^ row_F1);
+
+ always_ff @(posedge clk) begin
+   row_F1<=row_scan;  col_F1<=col_wires;
+   row_F2<=row_F1;    col_F2<=col_F1;
+   row_sync<=row_F2;  col_sync<=col_F2;
+   pressed_sync<=pressed;
+ end
+
+ always_ff @(posedge clk) begin
+   valid <= debounceOK & pressed_sync;
+   if (debounceOK & pressed_sync) begin row<=row_sync; col<=col_sync; end
+   else begin row<=0; col<=0; end
+ end
+
+ logic [DELAY:0] counter; initial counter=0;
+ always_ff @(posedge clk) begin
+   if (rst | row_change | col_change) counter<=0;
+   else if (!debounceOK) counter<=counter+1;
+ end
+ assign debounceOK = counter[DELAY];
+endmodule
+4.5 (optional) top_switch_only.sv — simulate without a keypad
+The lab explicitly suggests this kind of single-board test: drive key_code from switches and a button for valid to verify your combo FSM first.
+
+systemverilog
+Copy code
+module top_switch_only(
+    input  logic        MAX10_CLK1_50,
+    input  logic  [1:0] KEY,           // KEY[0]=resetn, KEY[1]=press
+    input  logic  [9:0] SW,
+    output logic  [7:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5,
+    output logic  [9:0] LEDR
+);
+    logic rst; assign rst=~KEY[0];
+    logic [3:0] key_code_sync = SW[3:0];
+    logic       key_validn_sync = ~KEY[1]; // hold KEY[1] down = valid low
+
+    combo_core u_combo(
+        .clk(MAX10_CLK1_50), .rst(rst),
+        .key_code_sync(key_code_sync),
+        .key_validn_sync(key_validn_sync),
+        .HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5),
+        .LEDR(LEDR)
+    );
+endmodule

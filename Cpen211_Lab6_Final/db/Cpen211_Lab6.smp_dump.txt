@@ -1,0 +1,6 @@
+
+State Machine - |DE10_LITE_Golden_Top|keyboard_core:u_kbd|st
+Name st.A st.C st.B 
+st.A 0 0 0 
+st.B 1 0 1 
+st.C 1 1 0 

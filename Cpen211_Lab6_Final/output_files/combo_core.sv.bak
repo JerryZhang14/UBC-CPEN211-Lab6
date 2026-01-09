@@ -1,0 +1,85 @@
+module combo_core(
+    input  logic       clk, rst,
+    input  logic [3:0] key_code_sync,
+    input  logic       key_validn_sync,       // active low while key held
+    output logic [7:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5,
+    output logic [9:0] LEDR
+);
+    // derive strobes from validn (low when held)
+    logic valid_low_d, key_pulse;
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst) begin valid_low_d<=1'b1; key_pulse<=1'b0; end
+        else begin
+            valid_low_d <= ~key_validn_sync;
+            key_pulse   <= (~key_validn_sync) &  valid_low_d; // 1 clk after going low
+        end
+    end
+
+    // 6-digit entry buffer
+    logic [3:0] entry[5:0], pass[5:0]; logic locked;
+    task automatic clear_entry(); begin
+        entry[0]=0; entry[1]=0; entry[2]=0; entry[3]=0; entry[4]=0; entry[5]=0;
+    end endtask
+    task automatic push_digit(input logic [3:0] d); begin
+        entry[5]=entry[4]; entry[4]=entry[3]; entry[3]=entry[2];
+        entry[2]=entry[1]; entry[1]=entry[0]; entry[0]=d;
+    end endtask
+    function automatic bit equal6(); equal6 =
+        (entry[0]==pass[0])&(entry[1]==pass[1])&(entry[2]==pass[2])&
+        (entry[3]==pass[3])&(entry[4]==pass[4])&(entry[5]==pass[5]); endfunction
+
+    // HEX fonts (minimal)
+    function automatic [7:0] hex7(input logic [3:0] n);
+        case(n)
+            4'h0: hex7=8'b1100_0000; 4'h1: hex7=8'b0111_1001; 4'h2: hex7=8'b0010_0100; 4'h3: hex7=8'b0011_0000;
+            4'h4: hex7=8'b0001_1001; 4'h5: hex7=8'b0001_0010; 4'h6: hex7=8'b0000_0010; 4'h7: hex7=8'b1111_1000;
+            4'h8: hex7=8'b0000_0000; 4'h9: hex7=8'b0001_0000; 4'hA: hex7=8'b0000_1000; 4'hB: hex7=8'b0000_0011;
+            4'hC: hex7=8'b1100_0110; 4'hD: hex7=8'b0110_0001; 4'hE: hex7=8'b0000_0110; 4'hF: hex7=8'b0000_1110;
+        endcase
+    endfunction
+    function automatic [7:0] seg_blank(); seg_blank=8'hFF; endfunction
+    function automatic [7:0] seg_O(); seg_O=8'b1100_0000; endfunction
+    function automatic [7:0] seg_P(); seg_P=8'b0000_1100; endfunction
+    function automatic [7:0] seg_E(); seg_E=8'b0000_0110; endfunction
+    function automatic [7:0] seg_n(); seg_n=8'b1010_1100; endfunction
+    function automatic [7:0] seg_L(); seg_L=8'b1100_0111; endfunction
+    function automatic [7:0] seg_C(); seg_C=8'b1100_0110; endfunction
+    function automatic [7:0] seg_H(); seg_H=8'b1001_1001; endfunction
+    function automatic [7:0] seg_d(); seg_d=8'b0111_0000; endfunction
+
+    // state
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst) begin
+            locked<=1'b0; clear_entry();
+            pass[0]=0; pass[1]=0; pass[2]=0; pass[3]=0; pass[4]=0; pass[5]=0;
+        end else if (key_pulse) begin
+            unique case (key_code_sync)
+                4'hF: clear_entry();               // '*'
+                4'hE: begin                        // '#'
+                    if (!locked) begin
+                        pass[0]=entry[0]; pass[1]=entry[1]; pass[2]=entry[2];
+                        pass[3]=entry[3]; pass[4]=entry[4]; pass[5]=entry[5];
+                        locked<=1'b1; clear_entry();
+                    end else begin
+                        if (equal6()) locked<=1'b0; // unlock on match
+                        clear_entry();
+                    end
+                end
+                default: push_digit(key_code_sync);
+            endcase
+        end
+    end
+
+    // display: show entry when typing, else OPEN/LOCHED
+    wire show_entry = |(entry[0]|entry[1]|entry[2]|entry[3]|entry[4]|entry[5]);
+    assign HEX0 = show_entry ? hex7(entry[0]) : (locked? seg_d(): seg_n());
+    assign HEX1 = show_entry ? hex7(entry[1]) : (locked? seg_E(): seg_E());
+    assign HEX2 = show_entry ? hex7(entry[2]) : (locked? seg_H(): seg_P());
+    assign HEX3 = show_entry ? hex7(entry[3]) : (locked? seg_C(): seg_P());
+    assign HEX4 = show_entry ? hex7(entry[4]) : (locked? seg_O(): seg_O());
+    assign HEX5 = show_entry ? hex7(entry[5]) : (locked? seg_L(): seg_blank());
+
+    assign LEDR[0] = locked;
+    assign LEDR[1] = show_entry;
+    assign LEDR[9:2] = 8'h00;
+endmodule

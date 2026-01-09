@@ -1,0 +1,61 @@
+// keyboard_core.sv — keypad scanner + debouncer + encoder (active-low valid)
+module keyboard_core(
+    input  logic       clk, rst,
+    input  wire [3:0]  col_wires,       // inputs (weak pull-ups ON in Quartus)
+    output wire [3:0]  row_wires,       // outputs to keypad rows
+    output logic [3:0] key_code,
+    output logic       key_validn       // low while a key is held
+);
+    // slow row scan (~20ms per row)
+    logic [1:0] row_sel; logic [19:0] slow;
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst) begin slow<=0; row_sel<=0; end
+        else begin slow<=slow+1; if (slow==0) row_sel<=row_sel+1; end
+    end
+    assign row_wires = (row_sel==2'd0)?4'b0111:
+                       (row_sel==2'd1)?4'b1011:
+                       (row_sel==2'd2)?4'b1101:4'b1110;
+
+    // debounce/sync (lab-provided style)
+    logic [3:0] kb_row, kb_col; logic kb_valid, kb_debounceOK;
+    kb_db #(.DELAY(16)) u_db (
+        .clk(clk), .rst(rst),
+        .row_wires(row_wires), .col_wires(col_wires), .row_scan(row_wires),
+        .row(kb_row), .col(kb_col), .valid(kb_valid), .debounceOK(kb_debounceOK)
+    );
+
+    // encode row/col -> nibble
+    function automatic logic [3:0] rc_to_code(input logic [3:0] r, c);
+        case({r,c})
+            8'b0111_1110: rc_to_code=4'h1; 8'b0111_1101: rc_to_code=4'h2;
+            8'b0111_1011: rc_to_code=4'h3; 8'b0111_0111: rc_to_code=4'hA;
+            8'b1011_1110: rc_to_code=4'h4; 8'b1011_1101: rc_to_code=4'h5;
+            8'b1011_1011: rc_to_code=4'h6; 8'b1011_0111: rc_to_code=4'hB;
+            8'b1101_1110: rc_to_code=4'h7; 8'b1101_1101: rc_to_code=4'h8;
+            8'b1101_1011: rc_to_code=4'h9; 8'b1101_0111: rc_to_code=4'hC;
+            8'b1110_1110: rc_to_code=4'h0; 8'b1110_1101: rc_to_code=4'hE;
+            8'b1110_1011: rc_to_code=4'hD; 8'b1110_0111: rc_to_code=4'hF;
+            default: rc_to_code=4'h0;
+        endcase
+    endfunction
+
+    // hold code & valid while pressed; one event per press
+    typedef enum logic [1:0] {IDLE,SEND,WAIT_REL} st_t; st_t st;
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst) begin st<=IDLE; key_code<=0; key_validn<=1; end
+        else begin
+            unique case(st)
+            IDLE: begin
+                key_validn<=1;
+                if (kb_valid) begin key_code<=rc_to_code(kb_row,kb_col); key_validn<=0; st<=SEND; end
+            end
+            SEND: begin
+                if (!kb_valid) begin key_validn<=1; st<=WAIT_REL; end
+            end
+            WAIT_REL: begin
+                if (!kb_valid) st<=IDLE;
+            end
+            endcase
+        end
+    end
+endmodule
